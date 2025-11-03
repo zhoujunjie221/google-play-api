@@ -1,0 +1,27 @@
+Integrate local google-play-scraper with bug fix
+
+- Replaced npm google-play-scraper dependency with local copy (v10.0.0)
+- Fixed TypeError in extractCategories function for apps with undefined categories
+- Updated import path in lib/index.js to use local version
+- Added google-play-scraper dependencies directly to package.json
+- Removed postinstall script (no longer needed)
+- Added MODIFICATIONS.md documenting all changes
+
+This fixes the error "Cannot read properties of undefined (reading 'length')"
+that occurred when fetching certain apps like magalingpeso.cash.loan.
+
+Related issue: https://github.com/facundoolano/google-play-scraper/issues/720
+
+Changes:
+- google-play-scraper/lib/utils/mappingHelpers.js: Added undefined checks
+- lib/index.js: Changed import to local path
+- package.json: Replaced google-play-scraper with its dependencies
+- README.md: Updated documentation
+- MODIFICATIONS.md: Added detailed modification documentation
+
+Tested with:
+- magalingpeso.cash.loan (previously failing)
+- com.whatsapp (control test)
+
+Both apps now return complete data successfully.
+
