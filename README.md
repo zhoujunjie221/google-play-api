@@ -18,45 +18,17 @@ echo "PORT=8080" >> .env
 npm start
 ```
 
-## Local google-play-scraper Integration
+## google-play-scraper Version
 
-This project includes a local copy of `google-play-scraper` (v10.0.0) with bug fixes applied directly to the source code.
-
-### Bug Fix Applied
-
-Fixed a bug in the `extractCategories` function that caused the following error for certain apps:
+This project uses `google-play-scraper` version **10.1.1** or later, which includes a fix for the bug that caused the following error for certain apps:
 
 ```
 TypeError: Cannot read properties of undefined (reading 'length')
 ```
 
-**Changes made:**
-- Added `undefined` check before accessing `searchArray.length`
-- Added `undefined` check for sub-arrays in recursive calls
-
-**Location:** `google-play-scraper/lib/utils/mappingHelpers.js`
-
 **Related Issue:** [google-play-scraper#720](https://github.com/facundoolano/google-play-scraper/issues/720)
 
-**For detailed information about modifications, see [MODIFICATIONS.md](MODIFICATIONS.md)**
-
-## Deployment
-
-After cloning this repository:
-
-```bash
-# Install dependencies (this will NOT overwrite the local google-play-scraper)
-npm install
-
-# Configure your API key
-echo "API_KEY=your_api_key_here" > .env
-echo "PORT=8080" >> .env
-
-# Start the server
-npm start
-```
-
-The local `google-play-scraper` directory will be preserved during `npm install`.
+The bug was fixed in version 10.1.1 by using `Array.isArray()` check instead of just checking for `null`.
 
 ## Authentication
 
